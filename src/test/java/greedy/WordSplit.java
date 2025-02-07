@@ -59,15 +59,16 @@ public class WordSplit {
                 wordExist[i] = true;
                 System.out.println("i=" + i + ":" + s.substring(0, i));
             } else {
-                for (int j = 0; j < i; j++) {
+                for (int j = 0; j <= i; j++) {
                     if (wordExist[j] && wordSet.contains(s.substring(j, i))) {
                         wordExist[i] = true;
+                        break;
                     }
                 }
             }
         }
 
-        return wordExist[s.length() - 1];
+        return wordExist[s.length()];
     }
 
 }
