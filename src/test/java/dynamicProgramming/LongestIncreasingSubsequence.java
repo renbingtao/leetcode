@@ -40,15 +40,24 @@ public class LongestIncreasingSubsequence {
 
     @Test
     public void test() {
-        int[] arr = new int[]{1};
+        int[] arr = new int[]{1, 3, 6, 7, 9, 4, 10, 5, 6};
         int i = lengthOfLIS(arr);
         System.out.println(i);
     }
 
     public int lengthOfLIS(int[] nums) {
-
-
-        return 0;
+        int[] maxLength = new int[nums.length];
+        int max = 0;
+        for (int i = 0; i < nums.length; i++) {
+            maxLength[i] = 1;
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j]) {
+                    maxLength[i] = Math.max(maxLength[i], maxLength[j] + 1);
+                }
+            }
+            max = Math.max(max, maxLength[i]);
+        }
+        return max;
     }
 
 }
