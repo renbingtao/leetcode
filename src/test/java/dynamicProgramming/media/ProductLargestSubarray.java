@@ -1,4 +1,4 @@
-package dynamicProgramming;
+package dynamicProgramming.media;
 
 /*
 给你一个整数数组 nums ，请你找出数组中乘积最大的非空连续

@@ -1,4 +1,4 @@
-package dynamicProgramming;
+package dynamicProgramming.media;
 
 /*
 给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。

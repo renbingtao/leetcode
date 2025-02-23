@@ -1,4 +1,4 @@
-package dynamicProgramming;
+package dynamicProgramming.media;
 
 /*
 给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
