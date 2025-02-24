@@ -28,7 +28,7 @@ public class LongestPalindromicSubstring {
 
     @Test
     public void test() {
-        System.out.println(longestPalindrome("cbbd"));
+        System.out.println(longestPalindrome("cbbbd"));
     }
 
     public String longestPalindrome(String s) {
@@ -41,18 +41,16 @@ public class LongestPalindromicSubstring {
         for (int i = 1; i < max.length; i++) {
             int pre = max[i - 1];
             String compare = "";
-            //abac型
-            if (i - pre - 1 < 0) {
-                max[i] = 1;
-                String tmp = s.substring(0, i + 1);
+            int start = i - pre - 1;
+            if (start < 0) {
+                start = 0;
+            }
+            for (int j = start; j < i + 1; j++) {
+                String tmp = s.substring(j, i + 1);
                 if (isPalindrome(tmp)) {
                     compare = tmp;
-                    max[i] = i;
-                }
-            } else {
-                if (s.charAt(i) == s.charAt(i - pre - 1)) {
-                    max[i] = max[i - 1] + 2;
-                    compare = s.substring(i - pre - 1, i + 1);
+                    max[i] = compare.length();
+                    break;
                 }
             }
             if (compare.length() >= maxStr.length()) {
@@ -71,58 +69,6 @@ public class LongestPalindromicSubstring {
             start++;
         }
         return true;
-    }
-
-    public String longestPalindromeOld(String s) {
-        if (s.length() == 1) {
-            return s;
-        }
-
-        int[] max = new int[s.length()];
-        boolean[] sames = new boolean[s.length()];
-        max[0] = 1;
-        sames[0] = true;
-        String maxStr = s.charAt(0) + "";
-
-        for (int i = 1; i < max.length; i++) {
-            int pre = max[i - 1];
-            boolean preSame = sames[i - 1];
-
-            //abb型
-            if (preSame && s.charAt(i) == s.charAt(i - 1)) {
-                max[i] = max[i - 1] + 1;
-                sames[i] = true;
-                maxStr = maxStr + s.charAt(i);
-                continue;
-            }
-
-            //abac型
-            if (i - pre - 1 < 0) {
-                max[i] = 1;
-                sames[i] = true;
-                //ab型
-                if (maxStr.length() == 1 && pre == 1) {
-                    maxStr = s.charAt(i) + "";
-                }
-                continue;
-            }
-            //aba型
-            if (s.charAt(i) == s.charAt(i - pre - 1)) {
-                max[i] = max[i - 1] + 2;
-                String compare = s.substring(i - pre - 1, i + 1);
-                if (compare.length() >= maxStr.length()) {
-                    maxStr = compare;
-                }
-            } else {
-                //abc型
-                max[i] = 1;
-                sames[i] = true;
-                if (maxStr.length() == 1 && pre == 1) {
-                    maxStr = s.charAt(i) + "";
-                }
-            }
-        }
-        return maxStr;
     }
 
 }
