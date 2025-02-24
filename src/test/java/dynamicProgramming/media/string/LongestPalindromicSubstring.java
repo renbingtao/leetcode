@@ -1,4 +1,4 @@
-package dynamicProgramming.media;
+package dynamicProgramming.media.string;
 
 import org.junit.jupiter.api.Test;
 
